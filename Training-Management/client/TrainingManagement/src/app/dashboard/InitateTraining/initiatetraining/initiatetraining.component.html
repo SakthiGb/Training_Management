@@ -1,0 +1,43 @@
+<div class="fullbody" id="spacing">
+    <fieldset>
+        <label for="heading" class="heading">Initiate Training</label>
+        <div class="select_box">
+            <label for="browser">Select Master Training:</label>
+            <input list="browsers" name="browser" id="browser" [(ngModel)]="searchtext"
+                (ngModelChange)="onFilterTextBoxChanged()">
+            <datalist id="browsers">
+                <option value="Java">
+                <option value=".NET">
+                <option value="HR">
+                <option value="Testing">
+                <option value="BA">
+            </datalist>
+
+        </div>
+
+        <div class="grid">
+
+
+            <div class="ag-grid">
+                <ag-grid-angular style="width: 100%; height: 20rem;" class="ag-theme-alpine" [rowData]="rowData"
+                    [columnDefs]="columnDefs" [pagination]="true" [paginationPageSize]="a"
+                    (gridReady)="onGridReady1($event)">
+                </ag-grid-angular>
+            </div>
+
+            <div class="gridFotter">
+                <div class="total_records">
+                    <label>Total Records:</label>
+                    <label id="record">{{rowData.length}}</label>
+                </div>
+                <div class="record_count">
+                    <label>Selected Record Count:</label>
+                    <select (change)="changeWebsite($event)" id="record">
+                        <option *ngFor="let web of websiteList">{{web}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+</div>

@@ -1,0 +1,54 @@
+<div class="fullArea">
+
+        
+        <h4 style="display: flex;justify-content:space-between;">{{title|titlecase}}<div style="transform: rotate(-180deg);outline: none;border: none;background-color: transparent;font-size: 26px;margin: 0;padding: 0; cursor: pointer;" title="back" (click)="backEvent()">&#10150;</div></h4>
+
+    <div class="grid">
+        <div class="d-grid d-md-flex justify-content-md-end">
+            <button type="button" class="btn" (click)="addPhase()">Add Phase</button>
+        </div>
+        <div class="ag-grid">
+            <ag-grid-angular style="width: 100%; height: 20rem;" class="ag-theme-alpine" [rowData]="rowData"
+                [columnDefs]="columnDefs" [pagination]="true" [paginationPageSize]="a"
+                (gridReady)="onGridReady1($event)">
+            </ag-grid-angular>
+        </div>
+        <div class="gridFotter">
+            <div class="total_records">
+                <label>Total Records:</label>
+                <label id="record">{{rowData.length}}</label>
+            </div>
+            <div class="record_count">
+                <label>Selected Record Count:</label>
+                <select (change)="changeWebsite($event)" id="record">
+                    <option *ngFor="let web of websiteList">{{web}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">{{showGridTitle}}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <ag-grid-angular style="width: 100%; height:140px" class="ag-theme-alpine" [rowData]="technologyGrid"
+                [colWidth]="120"
+                [columnDefs]="showColDefs"                 >
+                </ag-grid-angular>
+                
+            </div>
+
+        </div>
+    </div>
+</div>

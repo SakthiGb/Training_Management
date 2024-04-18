@@ -1,0 +1,105 @@
+<div class="container1">
+    <div class="background">
+        <div class="nav">
+            <div class="office">
+                <img class="bac" src="../../assets/Images/office.png">
+                <img class="logo" src="../../assets/Images/logo.svg">
+                <div class="menu">
+                    <img class="menubar" src="../../assets/Images/menu-bar.png">
+                    <p>{{indexes}} {{name.names}}</p>
+                </div>
+            </div>
+            <div class="profile bac">
+                <div class="name">
+                    <b style="position: relative">Hello, {{userArray.fname }} {{userArray.lname}} !</b>
+                    <br>
+                    <label>Logged in as :</label>
+                    <input [value]="userArray.role.name " disabled>
+                </div>
+               
+                <div class="profileImage" (click)="logout()">
+                    <img class="bacAvatar"  *ngIf="userArray.profile" src={{userArray.profile}}>
+                    <img class="bacAvatar"  *ngIf="!userArray.profile" src="../../assets/Images/usericon.png">
+              
+                 </div>
+
+                <div class="dropdown-content" *ngIf="profile">
+                    <div class="triangle"></div>
+                    <i class="fas fa-sign-out-alt" (click)="decision()"><span> Logout</span></i>
+                    <i class="fa fa-user" aria-hidden="true" (click)="profiles()"><span> Profile</span></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="rows " (click)="logoutcancel()">
+
+        <div class="col">
+            <span class="content">
+
+                <div class="i">
+                    <label (click)=" configuration()" *ngIf="access=='Super Admin'" for="config"><i class="fa fa-cog spin"
+                            aria-hidden="true"></i><span class="option_head"
+                            *ngIf="access=='Super Admin'">Configuration</span><i class="fas " [ngClass]=" {'fa-caret-down':!config,'fa-caret-up':config}" ></i></label>
+                    <div class="dropdown-contents" *ngIf="config">
+                        <b (click)="UserManagement()"><i class="fas fa-id-card" aria-hidden="true"></i><span>User
+                                Management</span></b>
+
+
+                        <b (click)="roleManagement()"><i class="fa fa-address-book" aria-hidden="true"></i><span>Role
+                                Management</span></b>
+                        <b (click)="permissions()"><i class="fa fa-user-shield"
+                                aria-hidden="true"></i><span>Permissions</span></b>
+                        <!-- add droupdown content here -->
+
+                    </div>
+                    <label (click)="trainingMaster()" for="masterTraining">
+                        <i class="fas fa-chalkboard-teacher spin" aria-hidden="true"></i><span>Training
+                            Master</span><i class="fas " [ngClass]=" {'fa-caret-down':!training,'fa-caret-up':training}" ></i>
+                    </label>
+
+                    <div class="dropdown-contents" *ngIf="training">
+
+                        <b (click)="trainingConfiguration()"><i class="fa fa-table" aria-hidden="true"></i><span
+                                style="font-size: medium;">Training Configuration</span></b>
+
+                        <b (click)="trainingInitiator()"><i class="fa fa-calendar-plus"
+                                aria-hidden="true"></i><span>Initiate Training</span></b>
+
+                        <!-- add droupdown content here -->
+
+                    </div>
+
+                    <label for="myTraining"  >
+                        <i class="fas fa-user-graduate spin" aria-hidden="true"></i><span>My Trainings</span>
+                        <i class="fas " [ngClass]=" {'fa-caret-down':true,'fa-caret-up':false}"></i>
+                    </label>
+
+                </div>
+
+            </span>
+        </div>
+        <div class="col2">
+
+            <div class="page">
+
+                <router-outlet></router-outlet>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<---------------------------------------------LogOutpopup--------------------------------------------------->
+
+<div class="confirmation" *ngIf="confirm">
+    <div class="box">
+        <h1>Do You Want To LogOut!</h1>
+        <div class="rowButton">
+            <button class="btn btn-lg btn" (click)="confirmlogout()"
+                style="margin-right:20px;color: white; background-color: #6a1b58;">Confirm</button>
+            <button class="btn btn-lg btn"
+                style="font-weight: 500;  color: #6a1b58; background-color: white;border: 2px solid #6a1b58;"
+                (click)="decision()">Cancel</button>
+        </div>
+    </div>
+</div>

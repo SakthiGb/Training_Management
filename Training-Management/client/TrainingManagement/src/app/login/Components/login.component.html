@@ -1,0 +1,40 @@
+<body>
+  <div class="container" id="container">
+    <div class="form-container">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="social-container">
+          <img src="../../assets/Images/xebia-logo.png">
+        </div>
+        <div class="form">
+        <input type="email" class="form-control" id="floatingInput" placeholder="Email Id" formControlName="username"
+          [ngClass]="{ 'is-invalid': submitted && form.username.errors }" id="inputEmail4">
+        <div  *ngIf="submitted &&
+                      form.username.errors || form['username']?.touched &&
+                      form['username']?.errors?.['required'] &&
+                      form['username']?.errors?.['maxLength'] &&
+                      form['username']?.errors?.['minLength'] " class="invalid-feedback">*Enter valid Email </div>
+        <input [type]="password" class="form-control" id="floatingPassword" placeholder="Password"
+          formControlName="password" [ngClass]="{ 'is-invalid': submitted && form.password.errors }"
+          id="inputPassword4">
+        <span class="eye" (click)="Click()">
+          <i class="fa fa-eye" aria-hidden="true" *ngIf="!show"></i>
+          <i class="fa fa-eye-slash" aria-hidden="true" *ngIf="show"></i>
+        </span>
+        <div *ngIf="submitted &&
+      form.password.errors || form.password.errors && 
+        form['password']?.errors?.['required'] &&
+        form['password']?.errors?.['maxLength'] &&
+        form['password']?.errors?.['minLength']" class="invalid-feedbacks">
+          *Enter valid password</div>  
+      </div>
+            <h5 class="fpass" (click)="forgotPassword()">Forgot your password?</h5>
+        <div class="button">
+          <button type="submit" class="btn">Sign In</button>
+        </div> 
+      </form>
+    </div>
+    <div class="overlay">
+      <img src="../../assets/Images/loginn.jpg">
+    </div>
+  </div>
+</body>

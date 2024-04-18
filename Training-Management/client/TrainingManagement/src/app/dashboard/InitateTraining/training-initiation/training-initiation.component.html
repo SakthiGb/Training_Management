@@ -1,0 +1,86 @@
+<div class="fullbody">
+    <label for="heading" class="heading">Training Initiation</label>
+    <form autocomplete="off">
+        <div class="row" id="space">
+            <div class="col-md-3">
+                <div class="form">
+                    <label for="StartDate">Start Date<span style="color: red;"> *</span></label>
+                    <input type="date" class="form-control shadow-sm" id="StartDate" placeholder="Enter Start Date">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form">
+                    <label for="EndDate">End Date<span style="color: red;"> *</span></label>
+                    <input type="date" class="form-control shadow-sm " id="StartDate" placeholder="Enter End Date">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <span class="active"> <button class="btn" (click)="plus_fun()">Add Trainer</button></span>
+            </div>
+            <div class="col-md-2">
+                <button class="btn" (click)="minus_fun()">Add Batch</button>
+            </div>
+        </div>
+        <div class="grid" *ngIf="!btn">
+            <div class="form">
+                <div class="row" id="space">
+                    <div class="col-6 col-md-4">
+                        <div class="form-floating">
+                            <select id="SelectTechnology" class="form-select">
+                                <option value="google">.Net</option>
+                                <option value="apple">Java</option>
+                                <option value="microsoft">Angular</option>
+                                <option value="meta">ReactJS</option>
+                                <option value="netflix">Netflix</option>
+                            </select>
+                            <label for="SelectTechnology">Select Technology</label>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-4">
+                        <div class="form-floating shadow-sm mb-3">
+                            <input type="text" class="form-control" list="floatingInputs" id="floatingInput"
+                                placeholder="name@example.com">
+                            <label for="floatingInput">Search Trainer using Name/ID<span id="search"><i
+                                        class='fas fa-search' style='font-size:15px'></i></span></label>
+                            <datalist id="floatingInputs">
+                                <option value="Kapil">
+                                <option value="Seshan">
+                                <option value="Saran">
+                                <option value="Jerome">
+                                <option value="TamilSelvan">
+                            </datalist>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <button class="btn1">Add Trainer</button>
+                    </div>
+                </div>
+            </div>
+            <div class="grid">
+                <div class="ag-grid">
+                    <ag-grid-angular style="width: 100%; height: 15rem;" class="ag-theme-alpine" [rowData]="rowData"
+                        [columnDefs]="columnDefs" [pagination]="true" [paginationPageSize]="a"
+                        (gridReady)="onGridReady1($event)">
+                    </ag-grid-angular>
+                </div>
+
+                <div class="gridFotter">
+                    <div class="total_records">
+                        <label>Total Records:</label>
+                        <label id="record">{{rowData.length}}</label>
+                    </div>
+                    <div class="record_count">
+                        <label>Selected Record Count:</label>
+                        <select (change)="changeWebsite($event)" id="record">
+                            <option *ngFor="let web of websiteList">{{web}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>

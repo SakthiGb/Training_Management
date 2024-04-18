@@ -1,0 +1,138 @@
+<link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<div class="container">
+    <div class="nav">
+
+        <span id="m1">Permission</span>
+    </div>
+
+    <div style="display: flex;gap: 27px;margin-top: 20px;">
+        <div style="background-color:whitesmoke;width: 230px;margin-left: 10px;padding: 10px;">
+            <span style="margin-left: 20px;">Available Module</span>
+        </div>
+        <div style="background-color:whitesmoke;width: 780px;padding: 10px;">
+            <span *ngIf="!(navi==null) " style="margin-left: 5px;">{{navi}}</span>
+            <span *ngIf="(navi==null)" style="background-color: transparent;box-shadow: none;"></span>
+        </div>
+    </div>
+
+    <div style="gap: 20px;justify-content: center;position: relative;">
+        <div class="twobox" style="display: inline-flex; gap: 20px">
+            <div class="container1">
+
+                <div
+                    style="overflow:auto ;height: 100%;display: flex;flex-direction: column; gap: 5px;background-color:ghostwhite;">
+                    <div class="option" *ngFor="let item of list;">
+                        <div style="display: flex;gap:10px;">
+
+                            <input type="checkbox" id="{{item.value}}" [(ngModel)]="item.status" style="display:none ;">
+
+                            <!-- <div class="icon" *ngIf="item.status">--</div> -->
+                            <div class=" icon" *ngIf="item.status">
+                                <div class="material-symbols-outlined"> remove</div>
+                            </div>
+
+                            <!-- <div class="icon" *ngIf="!item.status" style="padding:3px 8px;">+</div> -->
+                            <div class=" icon" *ngIf="!item.status">
+                                <div class="material-symbols-outlined"> add</div>
+                            </div>
+                            <label class="content" for="{{item.value}}">{{item.value}}</label>
+
+                        </div>
+                        <div class="option1" *ngIf="item.status">
+                            <label class="option_content" *ngFor="let option of item.option"
+                                (click)="select(item.value, option)">{{option}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="noModule" *ngIf="!navi">
+                <span
+                    style="color: red; text-align:center;font-weight:400;margin:auto; font-size: 20px; background-color: transparent;border: none;">No
+                    Modules Has Been selected yet!!</span>
+            </div>
+            <!-- ////////////////////////////Configuration/////////////////////////// -->
+            <!-- User management -->
+            <div class="container2" *ngIf="selectedModule=='User Management'">
+                <!-- content here -->
+                no data found
+            </div>
+
+            <!-- Role management -->
+            <div class="container2" *ngIf="selectedModule=='Role Management'">
+
+                <div style="width:100% ; display:flex; flex-direction: column;overflow-y: auto;">
+                    <div class="roleManagement">
+                        <ag-grid-angular class="ag-theme-alphine" style="width: 100%; height: 180px;"
+                            [gridOptions]="gridOptions" [columnDefs]="columnDefs" [rowData]="rowData" [rowHeight]="30"
+                            (gridReady)="onGridReady1($event)">
+                        </ag-grid-angular>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- permission management -->
+            <div class="container2" *ngIf="selectedModule=='Permission'">
+                <!-- content here -->
+                no data found
+            </div>
+
+            <!-- /////////////////////////////////////training master/////////////////////////// -->
+
+            <div class="container2" *ngIf="selectedModule=='Training Configuration'">
+
+                <!-- content here -->
+                no data found
+
+            </div>
+
+            <div class="container2" *ngIf="selectedModule=='Iniate Training'">
+                <!-- content here -->
+                no data found
+            </div>
+
+
+
+
+            <!-- /////////////////////////////////////training master/////////////////////////// -->
+
+            <div class="container2" *ngIf="false">
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- <div class="bottomhead" >
+        <button id="bottom" class="btn btn-primary">Save Permissions</button>
+        </div> -->
+        </div>
+        <div class="d-grid d-md-flex justify-content-md-end">
+
+            <button type="button" style="background-color: #6a1b58;" class="btn btn-primary" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasRight">Add
+
+                Training</button>
+        </div>
+    </div>
+
+
+</div>

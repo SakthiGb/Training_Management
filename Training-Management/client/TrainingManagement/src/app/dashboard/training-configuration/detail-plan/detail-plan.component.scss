@@ -1,0 +1,157 @@
+.fullbody {
+  margin: 2% 1% 0px 2%;
+}
+
+
+
+
+h4 {
+  color: #990474;
+  margin-left: 1%;
+  font-weight: 700;
+}
+
+button {
+  padding: 5px;
+  margin-top: -5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px
+}
+
+.fa {
+  color: #00039b;
+  padding: 5px;
+  background-color: #fff;
+  border-radius: 50%;
+}
+
+//------------------------- Grid part ---------------------//
+
+.grid {
+  margin-top: 2%;
+
+}
+
+#addPlan {
+  width: 100%;
+  height: 50px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background-color: #f0f0f0;
+  align-items: center;
+
+}
+
+#addPlan-btn {
+  margin-right: 10px;
+  box-shadow: none;
+  background-color: #00039b;
+  color: white;
+  width: 130px;
+  height: 30px;
+  border-radius: 5px;
+  font-weight: 500;
+
+}
+
+.gridFooter {
+  width: 100%;
+  height: 40px;
+  border-radius: 0px 0px 5px 5px;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  background-color: #f0f0f0;
+  margin-bottom: 2%;
+}
+
+.total_records {
+  position: absolute;
+  left: 2rem;
+}
+
+.record_count {
+  position: absolute;
+  right: 8rem
+}
+
+#record {
+  margin-left: 10px;
+}
+
+.ag-theme-balham .ag-header {
+  font-style: bold;
+}
+
+.ag-cell-value.ag-cell.ag-cell-not-inline-editing.ag-cell-normal-height {
+  border-right: 1px solid black;
+}
+
+////////////////////////////////////     popup      /////////////////////////////////////////////
+.confirmation {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.699);
+  display: flex;
+   justify-content: center;
+    align-items: center;
+  }
+
+
+.box {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  padding: 0px 0px 10px 0px;
+  margin: auto;
+
+  h2 {
+    font-size: x-large;
+    color: #000000;
+
+  }
+
+  h5 {
+    background-color: #741e5b;
+    color: #ffffff;
+    padding: 15px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin: none;
+  }
+}
+
+.row {
+  margin: 0px 0px 0px 8px;
+  padding: 10px;
+}
+
+.btn-sm {
+  box-shadow: 0px 2px 0px 0px #dcdcdc;
+  background-color: #f7f8fc;
+  color: rgb(0, 0, 0);
+  border-radius: 5px;
+  font-weight: 500;
+}
+
+.btn-sm:hover {
+  background-color: #741e5b;
+  border: 1px solid #741e5b;
+  box-shadow: none;
+  color: white
+}
+
+.canves_button {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-left: 22rem;
+
+}

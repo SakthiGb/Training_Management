@@ -1,0 +1,72 @@
+<div class="grid">
+    <div class="d-grid d-md-flex justify-content-md-end">
+        <div id="inp">
+            <div class="input-group">
+                <div class="form-outline">
+                  <input type="search" id="form1"  [(ngModel)]="searchtext" (ngModelChange)="onFilterTextBoxChanged()" class="form-controls" />
+                </div>
+                <button type="button" class="btns btn-primary">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>   
+        </div>
+        <button type="button" class="btn" data-bs-toggle="offcanvas"
+         data-bs-target="#offcanvasTechnology" (click)="addTech()">Add Technology</button>
+    </div>
+    <div class="ag-grid">
+        <ag-grid-angular style="width: 100%; height: 20rem;" class="ag-theme-alpine" [rowData]="rowData"
+            [columnDefs]="columnDefs" [pagination]="true" [paginationPageSize]="a" (gridReady)="onGridReady1($event)">
+        </ag-grid-angular>
+    </div>
+    <div class="gridFotter">
+        <div class="total_records">
+            <label>Total Records:</label>
+            <label id="record">{{rowData.length}}</label>
+        </div>
+        <div class="record_count">
+            <label>Selected Record Count:</label>
+            <select (change)="changeWebsite($event)" id="record">
+                <option *ngFor="let web of websiteList">{{web}}</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasTechnology" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+        <h3 id="offcanvasRightLabel">{{formname}}</h3>
+    </div>
+    <form [formGroup]="addTechnology" autocomplete="off">
+        <div class="offcanvas-body">
+            <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label">Technology Name<span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="formGroupExampleInput" formControlName="name">
+                <label class="text-danger"
+                    *ngIf="register['technologyname']?.touched && register['technologyname']?.errors?.['required']">*Technology
+                    Name
+                    mandatory</label>
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Description<span class="text-danger">*</span></label>
+                <textarea class="form-control" id="description" rows="3" formControlName="description"></textarea>
+                <label class="text-danger"
+                    *ngIf="register['description']?.touched && register['description']?.errors?.['required']">*Description
+                    mandatory</label>
+            </div>
+            <div class="col mb-5">
+                <div class="col mb-2">
+                    <label class="form-check-label" for="active">Status</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" formControlName="active" type="checkbox" id="active" checked>
+                </div>
+            </div>
+            <div class="canves_button">
+                <button type="button" class="btn btn-sm" data-bs-dismiss="" (click)="Save()">Save</button>
+                <button type="button" class="btn btn-sm" data-bs-dismiss="" (click)="Cancel()">Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>

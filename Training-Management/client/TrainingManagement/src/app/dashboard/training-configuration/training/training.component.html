@@ -1,0 +1,110 @@
+<div class="grid">
+    <div class="d-grid d-md-flex justify-content-md-end">
+        <div id="inp">
+                <div class="input-group">
+                    <div class="form-outline">
+                      <input type="search" id="form1"  [(ngModel)]="searchtext" (ngModelChange)="onFilterTextBoxChanged()" class="form-controls" />
+                    </div>
+                    <button type="button" class="btns btn-primary">
+                      <i class="fas fa-search"></i>
+                    </button>
+                  </div>            
+        </div>
+        <button type="button" class="btn" data-bs-toggle="offcanvas" (click)="addTraninig()" data-bs-target="#offcanvasTraining">Add
+            Training</button>
+    </div>
+
+    <div class="ag-grid">
+        <ag-grid-angular style="width: 100%; height: 20rem;" class="ag-theme-alpine" [rowData]="rowData"
+            [columnDefs]="columnDefs" [pagination]="true" [paginationPageSize]="a" (gridReady)="onGridReady1($event)">
+        </ag-grid-angular>
+    </div>
+
+    <div class="gridFotter">
+        <div class="total_records">
+            <label>Total Records:</label>
+            <label id="record">{{rowData.length}}</label>
+        </div>
+        <div class="record_count">
+            <label>Selected Record Count:</label>
+            <select (change)="changeWebsite($event)" id="record">
+                <option *ngFor="let web of websiteList">{{web}}</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<!------------- offcanvas part --------------------->
+
+<div class="offcanvas offcanvas-end " data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1"
+    id="offcanvasTraining" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+        <h3 id="offcanvasRightLabel">{{formname}}</h3>
+    </div>
+    <form [formGroup]="addTraining" autocomplete="off">
+        <div class="offcanvas-body">
+            <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label">Training Name<span
+                        class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="formGroupExampleInput" formControlName="name">
+                <label class="text-danger"
+                    *ngIf="register['trainingname']?.touched && register['trainingname']?.errors?.['required']">
+                    *Training Name Mandatory</label>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Select Stream<span class="text-danger">*</span></label>
+                <select class="form-select" formControlName="streams">
+                    <option selected disabled>Select Stream</option>
+                    <option *ngFor="let stream of streamsData" [value]="stream.id">{{stream.name}}</option>
+                </select>
+                <label class="text-danger"
+                    *ngIf="register['level']?.touched && register['level']?.errors?.['required']">*Stream
+                    mandatory</label>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Type<span class="text-danger">*</span></label>
+                <select class="form-select" formControlName="streamType">
+                    <option selected disabled>Select Type</option>
+                    <option *ngFor="let type of streamTypeData" [value]="type.id">{{type.name}}</option>
+                </select>
+                <label class="text-danger"
+                    *ngIf="register['level']?.touched && register['level']?.errors?.['required']">
+                    *Type Mandatory</label>
+            </div>
+
+            <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label">Duration<span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="formGroupExampleInput" formControlName="duration">
+                <label class="text-danger"
+                    *ngIf="register['trainingname']?.touched && register['trainingname']?.errors?.['required']">
+                    *Duration Mandatory</label>
+            </div>
+
+            <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Description<span
+                        class="text-danger">*</span></label>
+                <textarea class="form-control" id="description" rows="3" formControlName="description"></textarea>
+                <label class="text-danger"
+                    *ngIf="register['description']?.touched && register['description']?.errors?.['required']">*Description
+                    mandatory</label>
+            </div>
+            <div class="col mb-5">
+                <div class="col mb-2">
+                    <label class="form-check-label" for="active">Status</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="active" formControlName="active">
+                </div>
+            </div>
+            <div class="canves_button">
+                <button type="button" class="btn btn-sm" (click)="Save()">Save</button>
+                <button type="button" class="btn btn-sm" (click)=" Cancel()">Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+

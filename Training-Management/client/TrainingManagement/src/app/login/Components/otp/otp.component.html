@@ -1,0 +1,28 @@
+  <body>
+    <div class="container" id="container">
+    <div class="form-container ">
+      <form [formGroup]="otpForm" (ngSubmit)="onSubmit()">
+        <div class="social-container">
+          <img src="../../assets/Images/xebia-logo.png">
+        </div>
+        <h1>Enter OTP</h1>
+          <div class="form-group">
+         <input class="form-field" placeholder="Enter OTP" formControlName="otp"
+          [ngClass]="{ 'is-invalid': submitted && form.otp.errors }">
+          <button type="submit"><i class='fas fa-paper-plane' style='font-size:15px'></i></button>
+        </div>
+        <div *ngIf="submitted && form.otp.errors
+        || form.otp.errors  &&
+          form['otp']?.errors?.['required'] &&
+          form['otp']?.errors?.['maxLength'] && 
+          form['otp']?.errors?.['minLength']"
+          class="invalid-feedback">*Enter Valid OTP</div>          
+        <p> We have sent you a OTP to your email !</p>
+      </form>
+    </div>
+    <div class="overlay">
+      <img src="../../assets/Images/otp sent.png">
+
+    </div>
+  </div>
+</body>

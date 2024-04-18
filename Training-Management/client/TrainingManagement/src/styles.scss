@@ -1,0 +1,309 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$TrainingManagement-primary: mat.define-palette(mat.$indigo-palette);
+$TrainingManagement-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$TrainingManagement-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$TrainingManagement-theme: mat.define-light-theme((
+  color: (
+    primary: $TrainingManagement-primary,
+    accent: $TrainingManagement-accent,
+    warn: $TrainingManagement-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($TrainingManagement-theme);
+
+/* You can add global styles to this file, and also import other style files */
+@import 'ag-grid-community/styles/ag-grid.css';
+@import 'ag-grid-community/styles/ag-theme-alpine.css';
+
+.ag-header-cell-label {
+   color: #6a1b58;
+   font-weight: bold;
+   display: flex;
+   font-size: medium;
+   font-family:"audiowide",sans-serif;
+   letter-spacing: -0.1px;
+   justify-content: center;
+   align-items: center;
+ 
+}
+
+.ag-cell-value {
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family:"audiowide",sans-serif;
+    letter-spacing: -0.2px;
+    font-size:13px;
+    font-weight:600;
+    color:#2F3130;
+    overflow: hidden;
+   
+}
+.ag-paging-panel{
+  height: 25px;
+}
+
+
+:root{
+  --primary_bg_color:#6a1b58;
+  --secondary_bg_color: #ffffff;
+  --primary_font_color:#efeeee;
+  --secondary_font_color:#fff;
+  --main_hover:#290220;
+  --secondary_hover:#c7009898;
+  --primary_option_bg:var(--primary_bg_color);
+  --secondary_option_bg:#990474;
+
+--blue: #26bbf0;
+--green: #c2d5a0;
+--red: #cf6a6d;
+--yellow: #ffbc0d;
+
+--black: #343536;
+--black-2: #424950;
+--grey: #89949b;
+--grey-2: #9aa8b1;
+--light-grey: #c4c9cd ;
+--light-grey-2: #dbdfe1;
+--white: #f3f4f5;
+}
+
+.loading{
+  width: 100vw;
+  height: 100vh;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: mix(#3f3251, #002025, 70%);
+  img{
+    width: 100px;
+  }
+  span{
+    font-weight: 700;
+    color: #a12183;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all .2s ease-in-out;
+  // color: #2F3130;
+}
+
+
+// html, body {  }
+body {
+  height: 100vh;
+  width: 100vw;
+  font-size: medium;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  font-family:"audiowide",sans-serif;
+
+  ///////////////////////////////////////////////
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: "proxima-nova-soft", sans-serif;
+  -webkit-user-select: none;
+  overflow: hidden;
+  
+  .vertical-centered-box {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    &:after {
+      content: '';
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle;
+      margin-right: -0.25em;
+    }
+    .content {
+      box-sizing: border-box;
+      display: inline-block;
+      vertical-align: middle;
+      text-align: left;
+      font-size: 0;
+    }
+  }
+}
+
+
+
+
+  /* Track */
+  ::-webkit-scrollbar{
+    width: 5px;
+    height: 4px;
+    cursor: pointer;
+
+  }
+
+  /* Track */
+::-webkit-scrollbar-track {
+  background: transparent; 
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #6a1b58; 
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #3d0b32; 
+  border-radius: 5px;
+}
+
+
+label{
+  color:#2F3130
+}
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+// END: TEMPLATE
+
+
+
+
+#prism-logo {
+  path {
+    fill: #20293b;
+    stroke: rgba(255,255,255,1);
+    stroke-width: 1px;
+  }
+}
+
+.loader-circle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.1);
+  margin-left: -60px;
+  margin-top: -60px;
+  // .animation(fade 1.2s infinite ease-in-out);
+}
+
+.loader-line-mask {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 60px;
+  height: 120px;
+  margin-left: -60px;
+  margin-top: -60px;
+  overflow: hidden;
+  transform-origin: 60px 60px;
+  -webkit-mask-image: -webkit-linear-gradient(top, var(--primary_bg_color), rgba(0, 0, 0, 0));
+  animation: rotate 1.2s infinite linear;
+  .loader-line {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.5);
+  }
+}
+
+#particles-background, #particles-foreground {
+  left: -51%;
+  top: -51%;
+  width: 202%;
+  height: 202%;
+  transform: scale3d(.5, .5, 1);
+}
+
+#particles-background {
+  background: mix(#3f3251, #6a1b58, 70%);
+  background-image: -moz-linear-gradient(45deg, #3f3251 2%, #6a1b58 100%);
+  background-image: -webkit-linear-gradient(45deg, #3f3251 2%, #6a1b58 100%);
+  background-image: linear-gradient(45deg, #3f3251 2%,#6a1b58 100%);
+}
+
+@keyframes rotate { 0% { transform: rotate(0deg);} 100% { transform: rotate(360deg);}}
+
+@keyframes fade { 0% { opacity: 1;} 50% { opacity: 0.25;}}
+
+@keyframes fade-in { 0% { opacity: 0;} 100% { opacity: 1;}}
+
+
+svg {
+  display:block;
+  width:258px;
+  height:258px;
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+}
+
+.tree {
+  fill: #ffffff;
+}
+
+.circle-mask {
+  min-height: 1300px;
+  // transform-origin: 50% 90%;
+  animation: scale 5s infinite ease-out;
+}
+
+@keyframes scale {
+  0%, 100% {
+    transform: scale(0.0);
+  }
+  7%, 90% {
+    transform: scale(0.4);
+  }
+  50% {
+    transform: scale(1);
+  }
+}

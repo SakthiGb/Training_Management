@@ -1,0 +1,146 @@
+<div *ngIf="rolelist" style="height: 100%;width: 100%; display: flex; flex-direction: column;">
+
+
+
+    <div id="nav">
+        <p id="m1">Role Management</p>
+          
+    </div>
+    
+
+    <div class="d-grid d-md-flex justify-content-md-end">
+        <div id="inp">
+            <div class="input-group">
+                <div class="form-outline">
+                  <input type="search" id="form1"  [(ngModel)]="searchtext" (ngModelChange)="onFilterTextBoxChanged()"class="form-controls" />
+                </div>
+                <button type="button" class="btns btn-primary">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>   
+        </div>
+        <button type="button" class="btn" data-bs-toggle="offcanvas"  (click)="add_role()"
+            data-bs-target="#offcanvasTraining">Add
+            Role</button>
+            
+    </div>
+    
+    <ag-grid-angular class="ag-theme-alpine"
+        style="height:100%; width:100%;padding: 0 12px 12px 12px;overflow-y: hidden;" [columnDefs]="userDatas"
+        [rowData]="userData" [pagination]="true" [rowHeight]="40" [paginationPageSize]="a" [cacheQuickFilter]="true"
+        (gridReady)="onGridReady1($event)" enablefilter="true">
+
+    </ag-grid-angular>
+
+    <div id="foot">
+        <div class="record">Total Records: <span style="font-weight:bold;">{{userData.length}}</span></div>
+        <div class="recordcount">
+
+            <label>Selected Record Count:</label>
+
+            <select (change)="changeWebsite($event)" id="record">
+
+                <option *ngFor="let web of websiteList">{{web}}</option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!--------------------------------------------- form---------------------------------------------------------------->
+
+
+<div *ngIf="this.user">
+
+
+    <div class=" offcanvas-end bac" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel"
+        style="transform: none;">
+
+
+        <div class="offcanvas-header">
+            <label id="offcanvasRightLabel" style="font-size: 19px;font-weight: bold;">{{formname}}</label>
+        </div>
+        <div class="offcanvas-body" style="margin-top: -16px;">
+            <label style="color:#6a1b58 ; font-size: bold;font-weight: 600;">Role Details</label><br>
+            <form [formGroup]="addRoleForm" (ngSubmit)="onSubmit()">
+
+                <div class="form">
+                    <div class="content">
+                        <div class="form-group col-md-3">
+
+                            <label>Role Name<span style="color: red;"> *</span></label><br>
+                            <input type="text" class="form-control" id="Productname" style="box-shadow: none;"
+                                formControlName="name">
+                            <label class="text-danger"
+                                *ngIf="register['name']?.touched && register['name']?.errors?.['required']">*Role name
+                                mandatory</label>
+                            <label class="text-danger"
+                                *ngIf="register['name']?.touched && register['name']?.errors?.['maxlength']">*Role name
+                                should not exceed 50 characters</label>
+                            <label class="text-danger"
+                                *ngIf="register['name']?.touched && register['name']?.errors?.['pattern']">*Role name
+                                should have only Alphanumeric</label>
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label class="form-label" style="margin-bottom: 0px;">level<span class="text-danger">*</span></label>
+                            <select class="form-select" formControlName="name">
+                                <option selected disabled>Select level</option>
+                                <option *ngFor="let Role of Roles" [value]="Role">{{Role}}</option>
+                            </select>
+                            <label class="text-danger"
+                                *ngIf="register['level']?.touched && register['level']?.errors?.['required']">*Level
+                                mandatory</label>
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label>Copy Existing Role</label><br>
+                            <!-- <input type="text" class="form-control" id="Productname" style="box-shadow: none;"
+                            formControlName="name"> -->
+                            <select (change)="setPermission($event)">
+                                <option [defaultSelected]="null" style="color: rgb(129, 128, 128);">No Role Selected
+                                </option>
+                                <option *ngFor="let role of userData" [value]="role.id">{{role.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-description ">
+                        <div class="description">
+                            <label for="Description">Role Description</label>
+                            <textarea style="width: 40rem; box-shadow: none; height: 10px;" class="form-control"
+                                formControlName="description"></textarea>
+                        </div>
+                        <div class="form-description">
+                            <div class="form-check form-switch" style="margin-right: 198px;">
+                                <label class="form-check-label"  for="active">Status</label><br>
+                                <input class="form-check-input check-input-lg" type="checkbox" id="active" checked>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="permission">
+                        <ag-grid-angular class="ag-theme-alpine"
+                            style="height:100%; width:100%;margin-top: 20px;"
+                            [columnDefs]="permission_colDef" [rowData]="permission_rowData" [rowHeight]="41">
+                        </ag-grid-angular>
+                    </div>
+
+
+                    <div class="btn-footer">
+                        <div class="canves_button">
+                            <button type="button" class="btn btn-sm" data-bs-dismiss="offcanvas" (click)="Save()">Save</button>
+                            <button type="button" class="btn btn-sm" data-bs-dismiss="offcanvas" (click)="Cancel()">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

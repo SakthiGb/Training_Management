@@ -1,0 +1,3 @@
+--UPDATE DATABASECHANGELOGLOCK SET LOCKED=0, LOCKGRANTED=null, LOCKEDBY=null where ID=1;
+--You may also need to replace LOCKED=0 with LOCKED=FALSE.
+--Or you can simply drop the DATABASECHANGELOGLOCK table, it will be recreated.

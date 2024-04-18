@@ -1,0 +1,22 @@
+<div class="grid">
+    <div class="d-grid d-md-flex justify-content-md-end">
+        <button type="button" class="btn" (click)="addTraining()">Add Master Training</button>
+    </div>
+    <div class="ag-grid">
+        <ag-grid-angular style="width: 100%; height: 20rem;" class="ag-theme-alpine" [rowData]="rowData"
+            [columnDefs]="columnDefs" [pagination]="true" [paginationPageSize]="a" (gridReady)="onGridReady1($event)">
+        </ag-grid-angular>
+    </div>
+    <div class="gridFotter">
+        <div class="total_records">
+            <label>Total Records:</label>
+            <label id="record">{{rowData.length}}</label>
+        </div>
+        <div class="record_count">
+            <label>Selected Record Count:</label>
+            <select (change)="changeWebsite($event)" id="record">
+                <option *ngFor="let web of websiteList">{{web}}</option>
+            </select>
+        </div>
+    </div>
+</div>

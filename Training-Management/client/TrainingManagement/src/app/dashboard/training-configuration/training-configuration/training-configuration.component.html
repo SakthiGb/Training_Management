@@ -1,0 +1,23 @@
+<div class="fullArea">
+    <h5>{{title|titlecase}}</h5>
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn_group" [style.color]="tc" [style.background-color]="trainingColor"  (click)="training_fun()">Training</button>
+        <button type="button" class="btn btn_group" [style.color]="tr" [style.background-color]="technologyColor"  (click)="technology_fun()">Technology</button>
+        <button type="button" class="btn btn_group" [style.color]="sc" [style.background-color]="streamColor"  (click)="stream_fun()">Stream</button>
+
+        
+    </div>
+
+    <div class="routeComp">
+        <div *ngIf="training">
+            <app-training></app-training>
+        </div>
+        <div *ngIf="technology">
+            <app-technology></app-technology>
+        </div>
+        <div *ngIf="streams">
+            <app-streams></app-streams>
+        </div>
+    </div>
+    
+</div>

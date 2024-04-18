@@ -1,0 +1,141 @@
+<div class="fullArea">
+    <label for="heading" class="heading">Add Master Training</label>
+    <form [formGroup]="addMasterTraining" autocomplete="off">
+        <div class="row g-5">
+            <div class="col-md-4 mb-4">
+                <label class="form-label">Master Training Name<span class="text-danger">*</span></label>
+                <input type="text" class="form-control" formControlName="mastertrainingname">
+                <label class="text-danger"
+                    *ngIf="register['mastertrainingname']?.touched && register['mastertrainingname']?.errors?.['required']">*Master
+                    Training Name
+                    mandatory</label>
+            </div>
+            <div class="col">
+                <label class="form-label">Duration(in weeks)<span class="text-danger">*</span></label>
+                <input type="text" class="form-control" formControlName="duration">
+                <label class="text-danger"
+                    *ngIf="register['duration']?.touched && register['duration']?.errors?.['required']">*Duration
+                    mandatory</label>
+            </div>
+            <div class="col">
+                <div class="col mb-2">
+                    <label class="form-check-label" for="active">Active / Inactive</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="active" checked>
+                </div>
+            </div>
+        </div>
+        <div class="row g-5">
+            <div class="col-md-8 mb-3">
+                <label class="form-label">Description/Objective</label>
+                <input type="text" class="form-control" formControlName="description">
+            </div>
+        </div>
+    </form>
+
+    <div class="grid">
+        <div class="d-grid d-md-flex justify-content-md-end" id="addTraining">
+            <button type="button" class="btn" id="addTraining-btn" data-bs-toggle="modal"
+                data-bs-target="#addTrainingModal">Add Training</button>
+        </div>
+        <div class="ag-grid">
+            <ag-grid-angular style="width: 100%; height: 20rem;" class="ag-theme-alpine" [rowData]="rowData"
+                [columnDefs]="columnDefs" [pagination]="true" [paginationPageSize]="a">
+            </ag-grid-angular>
+        </div>
+        <div class="gridFotter">
+            <div class="total_records">
+                <label>Total Records:</label>
+                <label id="record">{{rowData.length}}</label>
+            </div>
+            <div class="record_count">
+                <label>Selected Record Count:</label>
+                <select (change)="changeWebsite($event)" id="record">
+                    <option *ngFor="let web of websiteList">{{web}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="d-grid gap-3 d-md-flex justify-content-md-end">
+            <button type="button" class="btn btn-sm" type="submit" [disabled]="!addMasterTraining.valid"
+                (click)="onSubmit()">Save</button>
+            <button type="button" class="btn btn-sm" (click)="cancel()">Cancel</button>
+        </div>
+    </div>
+
+
+
+    <!-------------------- model content -------------------->
+
+    <div class="modal fade" id="addTrainingModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Training</h5>
+                    <i class="bi bi-x-circle" data-bs-dismiss="modal"></i>
+                </div>
+                <div class="modal-body">
+
+                    <form [formGroup]="addTraining" autocomplete="off">
+                        <div class="row g-5">
+                            <div class="col-md-6 mb-4">
+                                <label class="form-label">Training<span class="text-danger">*</span></label>
+                                <select class="form-select" formControlName="training">
+                                    <option selected disabled>Training</option>
+                                    <option *ngFor="let item of Training" [value]="item">{{item}}</option>
+                                </select>
+                                <label class="text-danger"
+                                    *ngIf="regist['training']?.touched && regist['training']?.errors?.['required']">*Training
+                                    mandatory</label>
+                            </div>
+                            <div class="col">
+                                <label class="form-label">Technology<span class="text-danger">*</span></label>
+                                <select class="form-select" formControlName="technology">
+                                    <option selected disabled>Technology</option>
+                                    <option *ngFor="let item of Technology" [value]="item">{{item}}</option>
+                                </select>
+                                <label class="text-danger"
+                                    *ngIf="regist['technology']?.touched && regist['technology']?.errors?.['required']">*Technology
+                                    mandatory</label>
+                            </div>
+                        </div>
+                        <div class="row g-5">
+                            <div class="col-md-6 mb-4">
+                                <label class="form-label">Level<span class="text-danger">*</span></label>
+                                <select class="form-select" formControlName="level">
+                                    <option selected disabled>Level</option>
+                                    <option *ngFor="let item of Level" [value]="item">{{item}}</option>
+                                </select>
+                                <label class="text-danger"
+                                    *ngIf="regist['level']?.touched && regist['level']?.errors?.['required']">*Level
+                                    mandatory</label>
+                            </div>
+                            <div class="col">
+                                <div class="col mb-2">
+                                    <label class="form-check-label" for="active">Status</label>
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="active" checked>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row g-5">
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label">Description</label>
+                                <input type="text" class="form-control" formControlName="description">
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm" data-bs-dismiss="modal" (click)="modelSave()">Save</button>
+                    <button type="button" class="btn btn-sm" data-bs-dismiss="modal"
+                        (click)="modelCancel()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
